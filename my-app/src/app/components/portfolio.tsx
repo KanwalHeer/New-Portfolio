@@ -190,7 +190,7 @@ const SinglePagePortfolio = () => {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5 }}
       >
-        Frontend Developer
+        Full Stack Developer
       </motion.p>
 
       <motion.div
