@@ -2,8 +2,684 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
-body,
-:root{
+/* Global styles */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f7fafc;
+}
+
+.header {
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0; /* Make the navbar stick to the top */
+  z-index: 1000; /* Ensure it's above other content */
+  width: 100%;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #2b3885;
+}
+
+.links {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+
+.links li {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.links li.active {
+  font-weight: bold;
+  color: #4c9ff7; /* Change color for active link */
+}
+
+.links li:hover {
+  transform: scale(1.1);
+}
+
+.hamburger {
+  display: none;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  /* Hamburger and links on mobile */
+  .hamburger {
+    display: block;
+  }
+
+  .links {
+    z-index: 50;
+    display: none;
+    flex-direction: column;
+    gap: 15px;
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .links.open {
+    display: flex;
+  }
+
+  .links li {
+    padding: 10px 20px;
+    text-align: right;
+    width: 100%;
+  }
+}
+
+
+
+/* Hero Section */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  background-color: #f7fafc;
+  margin-top: 50px;
+}
+
+/* Hero Title */
+.hero-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Hero Description */
+.hero-description {
+  font-size: 1.25rem;
+  margin-bottom: 40px;
+  color: #555;
+}
+
+/* Buttons */
+.buttons {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.primary,
+.secondary {
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.primary {
+  background-color: #4c51bf;
+  color: white;
+}
+
+.secondary {
+  background-color: #e2e8f0;
+  color: #333;
+}
+
+/* Social Box */
+.social-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(214, 211, 211);
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+  margin-top: 40px;
+}
+
+/* Social Links */
+.social-links {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+/* Social Link Hover Effect */
+.social-link {
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;  /* Remove the underline initially */
+  color: #4c51bf;
+  transition: transform 0.2s ease-in-out, text-decoration 0.2s ease-in-out;  /* Add transition for underline */
+}
+
+.social-link:hover {
+  transform: translateY(-3px);  /* Apply the scale effect */
+  text-decoration: underline;  /* Show underline on hover */
+  color: #2b6cb0;  /* Optional: Change color on hover (you can customize this) */
+}
+
+
+/* Social Heading */
+.social-heading {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Download Resume Button */
+.download-resume-container {
+  margin-top: 40px;
+}
+
+.download-resume {
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background-color: #4c51bf;
+  color: white;
+  transition: transform 0.2s ease-in-out;
+}
+
+.download-resume:hover {
+  transform: translateY(-3px);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .buttons {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .social-links {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .social-box {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .download-resume {
+    width: 100%;
+  }
+}
+
+/* About Section */
+.about {
+  min-height: 90vh;
+  padding: 96px 16px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* About Title */
+.about-title {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+/* Content Layout: 2-Column Grid for Profile + Experience */
+.about .content {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2-column grid */
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+/* Profile Info Section */
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+  background-color: rgb(214, 211, 211); /* Optional: Add a background color */
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Profile Image */
+.profile-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.profile-image img {
+  width: 100%;
   height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* Name Style */
+.profile-info h3 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Info Grid: 2 Columns for Information */
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2-column grid */
+  gap: 16px;
+  width: 100%;
+  margin-top: 20px;
+  background-color: #2b3885;
+  color: #c3dafe;
+  padding: 10px;
+}
+
+.info-grid p {
+  font-size: 1rem;
+  color: white;
+}
+
+.info-grid a {
+  color: #ccccd4;
+  text-decoration: none;
+}
+
+.info-grid a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .info-grid {
+    grid-template-columns: 1fr; /* Stack the info in a single column on small screens */
+  }
+}
+
+/* Experience Section: Right Grid Column */
+.experience {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.experience-item {
+  background-color: rgb(214, 211, 211);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.experience-item h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2d3748;
+  margin-bottom: 10px;
+}
+
+.experience-item p {
+  color: #4a5568;
+  margin-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.download-button {
+  padding: 10px 20px;
+  background-color: #4c51bf;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 10px;
+}
+
+.download-button:hover {
+  background-color: #2b3885;
+}
+
+.download-button:focus {
+  outline: none;
+}
+
+/* Skills Section (Full Width Below Profile and Experience) */
+.skills {
+  background-color: rgb(214, 211, 211);
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 40px;
+  grid-column: span 2; /* Make skills span across both columns */
+}
+
+.skills-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2-column layout */
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.skill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #edf2f7;
+  color: #4c51bf;
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-align: center;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Skill Hover Effect */
+.skills .skill:hover {
+  transform: translateY(-5px);
+  background-color: #e2e8f0;
+}
+
+/* Icon styling */
+.skill-icon {
+  font-size: 1.5rem;
+  color: #4c51bf;
+}
+
+/* Skill name styling */
+.skill-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Progress Bar Container */
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background-color: #e2e8f0;
+  border-radius: 4px;
+  margin-top: 8px;
+  position: relative;
+}
+
+/* Progress inside the container */
+.progress {
+  height: 100%;
+  background-color: #4caf50;
+  border-radius: 4px;
+  transition: width 0.3s ease-in-out;
+}
+
+/* Dynamic Progress Width Classes (Predefined in CSS) */
+.progress-10 { width: 10%; }
+.progress-20 { width: 20%; }
+.progress-30 { width: 30%; }
+.progress-40 { width: 40%; }
+.progress-50 { width: 50%; }
+.progress-60 { width: 60%; }
+.progress-70 { width: 70%; }
+.progress-80 { width: 80%; }
+.progress-90 { width: 90%; }
+.progress-100 { width: 100%; }
+
+/* Avatar Style for Experience */
+.experience .avatar {
+  width: 80px;
+  height: 80px;
+  background-color: #2b3885;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .about .content {
+    grid-template-columns: 1fr; /* Stack columns in a single column */
+  }
+
+  .skills .skills-list {
+    grid-template-columns: 1fr; /* Stack skills in one column on small screens */
+  }
+
+  .profile-image {
+    margin-bottom: 20px;
+  }
+}
+
+
+
+
+/*/* Projects Section */
+.projects {
+  min-height: 90vh;
+  padding: 96px 16px;
+  max-width: 1280px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.projects h2 {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 48px;
+  text-align: center;
+}
+
+.projects .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.projects .grid .project {
+  background-color: white;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.projects .grid .project:hover {
+  transform: translateY(-8px);
+}
+
+.projects .grid .project .title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.projects .grid .project .description {
+  color: #4a5568;
+  margin-bottom: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.projects .grid .project .tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.projects .grid .project .tags .tag {
+  background-color: #edf2f7;
+  color: #4c51bf;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.projects .grid .project .view-project-link {
+  background-color: #4c51bf;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-align: center;
+  display: inline-block;
+  margin-top: 12px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.projects .grid .project .view-project-link:hover {
+  background-color: #2b3583;
+}
+
+/* Contact Section */
+.contact {
+  min-height: 90vh;
+  padding: 96px 16px;
+  max-width: 768px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact h2 {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 48px;
+  text-align: center;
+  color: #333;
+}
+
+.contact form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+.contact form .input,
+.contact form .textarea {
+  padding: 12px 16px;
+  border-radius: 4px;
+  border: 1px solid #cbd5e0;
+  outline: none;
+  transition: border-color 0.3s;
+  width: 100%;
+  font-size: 16px;
+}
+
+.contact form .input:focus,
+.contact form .textarea:focus {
+  border-color: #4c51bf;
+}
+
+.contact form .button {
+  padding: 12px 24px;
+  border-radius: 4px;
+  background-color: #4c51bf;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s;
+  font-size: 16px;
+}
+
+.contact form .button:hover {
+  transform: scale(1.05);
+}
+
+.contact form .button:disabled {
+  background-color: #d1d5db;
+  cursor: not-allowed;
+}
+
+.status {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 16px;
+  color: #4c51bf;
+}
+
+@media (max-width: 768px) {
+  /* On mobile devices, reduce the padding */
+  .contact {
+    padding: 50px 16px;
+  }
+
+  .contact h2 {
+    font-size: 28px;
+    margin-bottom: 32px;
+  }
+}
+
+/* Footer */
+.footer {
+  background-color: #f9fafb;
+  padding: 32px 0;
+}
+
+.footer .social {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 16px;
+}
+
+.footer .social a {
+  color: #4a5568;
+  transition: color 0.2s;
+}
+
+.footer .social a:hover {
+  color: #4c51bf;
+}
+
+.footer .copyright {
+  text-align: center;
+  color: #4a5568;
 }
